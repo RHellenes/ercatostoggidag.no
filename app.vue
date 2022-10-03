@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <dl class="style-21" >
+    <dl :class="`style-${getHeadingStyle}`" >
       <dt class="wordart">
         <div class="preview" data-content="Er Cato støgg i dag?">
           Er Cato støgg i dag?
@@ -35,6 +35,9 @@ const {data, pending, error} = useAsyncData('ercatostogg',
 const isImage = computed(() => {
   const regex = new RegExp("^http")
   return regex.test(data.value)
+})
+const getHeadingStyle = computed(() => {
+  return Math.floor(Math.random() * 21) + 1
 })
 
 const handleShouldShow = (): void => {
