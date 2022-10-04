@@ -1,0 +1,24 @@
+@font-face {
+  font-family: 'Impact';
+  src: url('../fonts/Impact/impact.ttf') format('truetype');
+       font-display: swap;
+       font-style: normal;
+}
+@font-face {
+  font-family: 'Times New Roman';
+  src: url('../fonts/Times+New+Roman/times+new+roman.ttf') format('truetype');
+       font-display: swap;
+       font-style: normal;
+}
+@font-face {
+  font-family: 'Times New Roman Bold';
+  src: url('../fonts/Times+New+Roman/times+new+roman+bold.ttf') format('truetype');
+       font-display: swap;
+       font-style: bold;
+}
+@font-face {
+  font-family: 'Times New Roman Italic';
+  src: url('../fonts/Times+New+Roman/times+new+roman+italic.ttf') format('truetype');
+       font-display: swap;
+       font-style: italic;
+}
