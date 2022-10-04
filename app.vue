@@ -6,42 +6,35 @@
           Er Cato støgg i dag?
         </div>
       </dt>
-      <template v-if="!isImage">
-        <Transition name="popin">
-          <dd v-show="shouldShow" :data-content="answerComputed">{{ answerComputed }}</dd> 
-        </Transition>
-      </template>
-      
-      <template v-else>
-        <Transition name="popin">
-          <img v-show="shouldShow" :srcset="answerComputed" width="500" height="500" alt="Cato er alltid støgg"> 
-        </Transition>
-      </template>
-
-      <button v-show="!shouldShow" @click="handleShouldShow" style="z-index:100000000000">Finn svaret</button>
+      <dd>
+        <template v-if="giphy.data">
+          <Transition name="popin">
+            <img v-show="shouldShow" :srcset="giphy.data.images.original.webp" width="500" height="500" alt="Cato er alltid støgg"> 
+          </Transition>
+        </template>
+        <template v-else>
+          <p>Ops! Han er så støgg at vi ikke kunne finne en giph som sa ja tydlig nok!</p>
+        </template>
+      </dd>
+      <button v-show="!shouldShow" @click="handleShouldShow" style="z-index:1000000">Finn svaret</button>
     </dl>
-    <!-- <canvas id="confetti-canvas" style="position: fixed; top: 0px; left: 0px; width: calc(100%); height: calc(100%); margin: 0px; padding: 0px; z-index: 999999999; pointer-events: none;"></canvas> -->
   </div>
 </template>
 <script setup lang="ts">
-
 import confetti from 'canvas-confetti'
-import answer from '@/utils/answers'
+
+useHead({
+  title: 'Er Cato støgg i dag?',
+  charset: 'utf-8',
+  meta: [
+    { name: 'description', content: 'Interesseside for å fjerne en hver tvil om Cato er støgg eller ikke' }
+  ],
+})
 
 let shouldShow = ref(false)
+const {data: giphy} = await useFetch('https://api.giphy.com/v1/gifs/random?api_key=9quZVPwsdg1SFp7953XVDFZu0HfGvQSb&tag=big+yes&rating=g')
 
-// const {data, pending, error} = useAsyncData('ercatostogg', 
-// () => $fetch('/api')
-// )
 
-const answerComputed = computed(() => {
-  return answer()
-})
-  
-const isImage = computed(() => {
-  const regex = new RegExp("^http")
-  return regex.test(answerComputed.value)
-})
 const getHeadingStyle = computed(() => {
   return Math.floor(Math.random() * 21) + 1
 })
@@ -104,8 +97,7 @@ dt{
 }
 dd{
   margin:0;
-  font-size: clamp(1.4em, 2vw, 8rem);
-  text-decoration:underline;
+  width:100%;
   
 }
 img{
