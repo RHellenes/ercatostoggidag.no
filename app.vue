@@ -27,11 +27,12 @@ useHead({
   title: 'Er Cato støgg i dag?',
   charset: 'utf-8',
   meta: [
-    { name: 'description', content: 'Interesseside for å fjerne en hver tvil om Cato er støgg eller ikke' }
+    { name: 'description', content: 'Interesseside for å fjerne en hver tvil om Cato er støgg eller ikke' },
+    { name: 'og:image', content: '/ErCatoStøggBanner2.png' }
   ],
 })
 
-let shouldShow = ref(false)
+const shouldShow = ref(false)
 const {data: giphy} = await useFetch('https://api.giphy.com/v1/gifs/random?api_key=9quZVPwsdg1SFp7953XVDFZu0HfGvQSb&tag=big+yes&rating=g')
 
 
