@@ -8,13 +8,13 @@
       </dt>
       <template v-if="!isImage">
         <Transition name="popin">
-          <dd v-show="shouldShow" :data-content="data">{{ data }}</dd> 
+          <dd v-show="shouldShow" :data-content="answerComputed">{{ answerComputed }}</dd> 
         </Transition>
       </template>
       
       <template v-else>
         <Transition name="popin">
-          <img v-show="shouldShow" :srcset="data" width="500" height="500" alt="Cato er alltid støgg"> 
+          <img v-show="shouldShow" :srcset="answerComputed" width="500" height="500" alt="Cato er alltid støgg"> 
         </Transition>
       </template>
 
@@ -26,15 +26,21 @@
 <script setup lang="ts">
 
 import confetti from 'canvas-confetti'
+import answer from '@/utils/answers'
 
 let shouldShow = ref(false)
 
-const {data, pending, error} = useAsyncData('ercatostogg', 
-() => $fetch('/api')
-)
+// const {data, pending, error} = useAsyncData('ercatostogg', 
+// () => $fetch('/api')
+// )
+
+const answerComputed = computed(() => {
+  return answer()
+})
+  
 const isImage = computed(() => {
   const regex = new RegExp("^http")
-  return regex.test(data.value)
+  return regex.test(answerComputed.value)
 })
 const getHeadingStyle = computed(() => {
   return Math.floor(Math.random() * 21) + 1
