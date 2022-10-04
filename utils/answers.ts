@@ -1,3 +1,4 @@
+// Unused but kept in case of good idea
 const answers:string[] = [
   'ja',
   'ja',
