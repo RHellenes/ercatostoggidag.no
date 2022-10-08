@@ -75,7 +75,7 @@ dl.style-5 .wordart .preview::before {
   transform: translate(0.4vw, 0.25vw);
   mix-blend-mode: darken;
 }
-dl.style-6 .wordart {
+/* dl.style-6 .wordart {
   transform: scaleX(0.85) translateZ(0);
 }
 dl.style-6 .wordart .preview {
@@ -92,7 +92,7 @@ dl.style-6 .wordart .preview::before {
   content: attr(data-content);
   z-index: -1;
   text-shadow: 0.125em 0.125em #717171;
-}
+} */
 dl.style-7 .wordart {
   transform: scaleY(1.25);
 }
